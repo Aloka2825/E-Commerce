@@ -20,10 +20,13 @@ const Login = () => {
 
   const isAuthenticate = async (email, password) => {
     try {
-      const { data } = await axios.post('/api/v1/login', {
+
+      const url = "/api/v1/login"
+      const { data } = await axios.post(url, {
         email: email,
         password: password,
       });
+      console.log(url);
       console.log(data);
       if (data.success === true) {
         const loggedInUser = data.user;
