@@ -21,7 +21,7 @@ const Login = () => {
   const isAuthenticate = async (email, password) => {
     try {
 
-      const url = "/api/v1/login"
+      const url = "https://e-commerce-xq9x.onrender.com/api/v1/login"
       const { data } = await axios.post(url, {
         email: email,
         password: password,
