@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../reducers/userSlice';
 import axios from 'axios';
+import { baseUrl } from '../../action/baseurl';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const Login = () => {
   const isAuthenticate = async (email, password) => {
     try {
 
-      const url = "https://e-commerce-xq9x.onrender.com/api/v1/login"
+      const url = `${baseUrl}/api/v1/login`
       const { data } = await axios.post(url, {
         email: email,
         password: password,

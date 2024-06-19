@@ -12,6 +12,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
+import { baseUrl } from "../../../action/baseurl";
 
 const statusOptions = ["Processing", "Shipped", "Delivered", "Cancelled"];
 
@@ -24,7 +25,7 @@ const AdminOrderDetails = () => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const { data } = await axios.get(`/api/v1/order/${orderId}`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/order/${orderId}`);
         console.log(data.order);
         setOrder(data.order);
         setSelectedStatus(data.order.orderStatus);
@@ -37,7 +38,7 @@ const AdminOrderDetails = () => {
 
   const handleStatusChange = async () => {
     try {
-      const { data } = await axios.put(`/api/v1/order/${orderId}`, {
+      const { data } = await axios.put(`${baseUrl}/api/v1/order/${orderId}`, {
         status: selectedStatus,
       });
       // Create a new order object with updated status

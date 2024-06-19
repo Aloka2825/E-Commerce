@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../reducers/userSlice';
 import axios from 'axios';
+import { baseUrl } from '../../action/baseurl';
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const SignUp = () => {
     const password = e.target.elements.psw.value;
 
     try {
-      const response = await axios.post('/api/v1/register', {
+      const response = await axios.post(`${baseUrl}/api/v1/register`, {
         name,
         email,
         password,

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Box, Typography } from '@mui/material';
 import '../../dashboard/Dashboard.css';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../../../action/baseurl';
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -15,7 +16,7 @@ const AllProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('/api/v1/admin/products'); // Replace with your API endpoint
+        const response = await axios.get(`${baseUrl}/api/v1/admin/products`); // Replace with your API endpoint
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -32,7 +33,7 @@ const AllProducts = () => {
 
   const handleDeleteConfirm = async () => {
     try {
-      const {data} = await axios.delete(`/api/v1/product/${selectedProductId}`);
+      const {data} = await axios.delete(`${baseUrl}/api/v1/product/${selectedProductId}`);
       console.log(data);
       if(data.success===true){
         setProducts(products.filter(product => product._id !== selectedProductId));

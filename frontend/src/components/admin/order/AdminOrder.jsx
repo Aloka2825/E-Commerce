@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AdminOrder.css'
+import { baseUrl } from '../../../action/baseurl';
 
 const AdminOrders = () => {
 
@@ -12,7 +13,7 @@ const AdminOrders = () => {
     
     const fetchOrders = async () => {
       try {
-        const {data} = await axios.get('/api/v1/orders');
+        const {data} = await axios.get(`${baseUrl}/api/v1/orders`);
         console.log(data);
         setOrders(data.orders);
       } catch (error) {

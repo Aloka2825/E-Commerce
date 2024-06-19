@@ -4,6 +4,7 @@ import { Box, Button, TextField, Typography, IconButton, Autocomplete, Alert } f
 import { AddPhotoAlternate, Delete } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import './CreateProduct.css';
+import { baseUrl } from '../../../action/baseurl';
 
 const categoryOptions = [
   'men-t-shirt',
@@ -31,7 +32,7 @@ const UpdateProduct = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const { data } = await axios.get(`/api/v1/product/${id}`);
+        const { data } = await axios.get(`${baseUrl}/api/v1/product/${id}`);
         setProductName(data.product.name);
         setPrice(data.product.price);
         setStock(data.product.stock);
@@ -71,7 +72,7 @@ const UpdateProduct = () => {
     setIsLoading(true);
 
     try {
-      const { data } = await axios.put(`/api/v1/product/${id}`, {
+      const { data } = await axios.put(`${baseUrl}/api/v1/product/${id}`, {
         name: productName,
         price,
         stock,

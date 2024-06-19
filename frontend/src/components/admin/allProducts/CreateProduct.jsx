@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Box, Button, TextField, Typography, IconButton, Autocomplete, Alert } from '@mui/material';
 import { AddPhotoAlternate, Delete } from '@mui/icons-material';
 import './CreateProduct.css';
+import { baseUrl } from '../../../action/baseurl';
 
 const categoryOptions = [
   'men-t-shirt',
@@ -51,7 +52,7 @@ const CreateProduct = () => {
     });
 
     try {
-      const { data } = await axios.post('/api/v1/product/new', formData);
+      const { data } = await axios.post(`${baseUrl}/api/v1/product/new`, formData);
       setAlertMessage('Product created successfully!');
       setAlertSeverity('success');
       console.log(data);

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { cartItems } from "../reducers/cartSlice";
+import { baseUrl } from "./baseurl";
 
 
 export const loadCart = async () => {
@@ -15,7 +16,7 @@ export const loadCart = async () => {
 
 export const itemRemoveFromCart = async(productId)=>{
   try {
-    const {data} = await axios.delete(`/api/v1/cart/${productId}`);
+    const {data} = await axios.delete(`${baseUrl}/api/v1/cart/${productId}`);
   } catch (error) {
     console.log(error);
   }

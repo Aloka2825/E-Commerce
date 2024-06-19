@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
+import { baseUrl } from '../../../action/baseurl';
 
 const Test = () => {
   const [files, setFiles] = useState([]);
@@ -20,7 +21,7 @@ const Test = () => {
 
 
     try {
-      const response = await axios.post('/api/v1/test', formData)
+      const response = await axios.post(`${baseUrl}/api/v1/test`, formData)
 
       if (response) {
         console.log('Files uploaded successfully');

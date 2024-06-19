@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 import { Box, Typography } from '@mui/material';
 import '../../dashboard/Dashboard.css';
+import { baseUrl } from '../../../action/baseurl';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -17,7 +18,7 @@ const UserList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('/api/v1/users'); // Replace with your API endpoint
+        const response = await axios.get(`${baseUrl}/api/v1/users`); // Replace with your API endpoint
         setUsers(response.data.users);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -40,7 +41,7 @@ const UserList = () => {
 
   const handleDeleteConfirm = async () => {
     try {
-      const { data } = await axios.delete(`/api/v1/user/${selectedUserId}`);
+      const { data } = await axios.delete(`${baseUrl}/api/v1/user/${selectedUserId}`);
       console.log(data);
       if (data.success === true) {
         setUsers(users.filter(user => user._id !== selectedUserId));
@@ -54,7 +55,7 @@ const UserList = () => {
 
   const handleEditConfirm = async () => {
     try {
-      const { data } = await axios.put(`/api/v1/user/${userToEdit._id}`, { role: selectedUserRole });
+      const { data } = await axios.put(`${baseUrl}/api/v1/user/${userToEdit._id}`, { role: selectedUserRole });
       console.log(data);
       if (data.success === true) {
         setUsers(users.map(user => user._id === userToEdit._id ? { ...user, role: selectedUserRole } : user));

@@ -8,13 +8,14 @@ import CategorySection from './CategorySection';
 import NewArrivals from './NewArrivals';
 import PromoBanner from './PromoBanner';
 import Featured from './Featured';
+import { baseUrl } from '../../action/baseurl';
 
 const Home = ()=> {
   const dispatch = useDispatch();
   useEffect(()=>{
     const fetchData = async()=>{
       try {
-        const {data} = await axios.get('/api/v1/me');
+        const {data} = await axios.get(`${baseUrl}/api/v1/me`);
         console.log(data);
         if(data.success ===true){
           const loggedInUser = data.user;

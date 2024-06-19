@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Country, State } from 'country-state-city';
+import { baseUrl } from '../../action/baseurl';
 
 const OrderSuccess = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const OrderSuccess = () => {
         const paymentInfoObject = JSON.parse(paymentInfoJson);
         setPaymentInfo(paymentInfoObject.data);
 
-        const { data } = await axios.post('/api/v1/order/new', {
+        const { data } = await axios.post(`${baseUrl}/api/v1/order/new`, {
           shippingInfo: {
             name: shippingDetails.name,
             address: shippingDetails.address,
@@ -85,7 +86,7 @@ const OrderSuccess = () => {
 
   async function removeCart() {
     try {
-      const { data } = await axios.get('/api/v1/cart/remove');
+      const { data } = await axios.get(`${baseUrl}/api/v1/cart/remove`);
       if (data.success) {
         console.log(data.message);
       } else {

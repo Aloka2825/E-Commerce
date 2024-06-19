@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './ConfirmOrder.css';
 import axios from 'axios';
 import { Country, State } from 'country-state-city';
+import { baseUrl } from '../../action/baseurl';
 
 const ConfirmOrder = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const ConfirmOrder = () => {
     e.preventDefault();
     setIsProcessing(true);
     try{
-      const {data} = await axios.post('/api/v1/createOrder', {
+      const {data} = await axios.post(`${baseUrl}/api/v1/createOrder`, {
         amount: totalPrice,
         orderId: `order_${Date.now()}`,
         name : shippingDetails.name,
